@@ -26,6 +26,37 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
   ],
+  apollo: {
+    clientConfigs: {
+      default: '~/plugins/apollo-default-config.js',
+      alternativeClient: {
+        // required
+        httpEndpoint: 'http://localhost:4000',
+
+        // override HTTP endpoint in browser only
+        browserHttpEndpoint: '/graphql',
+
+        // See https://www.apollographql.com/docs/link/links/http.html#options
+        httpLinkOptions: {
+          credentials: 'same-origin'
+        },
+
+        // You can use `wss` for secure connection (recommended in production)
+        // Use `null` to disable subscriptions
+        wsEndpoint: 'ws://localhost:4000',
+
+        // LocalStorage token
+        tokenName: 'apollo-token',
+
+        // Enable Automatic Query persisting with Apollo Engine
+        persisting: false,
+
+        // Use websockets for everything (no HTTP)
+        // You need to pass a `wsEndpoint` for this to work
+        websocketsOnly: false
+      },
+    }
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -40,6 +71,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/apollo',
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
