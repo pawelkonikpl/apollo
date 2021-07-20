@@ -18,7 +18,10 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  serverMiddleware: [
+    '@/server-middleware/mockServer.js',
 
+  ],
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
@@ -43,7 +46,7 @@ export default {
 
         // You can use `wss` for secure connection (recommended in production)
         // Use `null` to disable subscriptions
-        wsEndpoint: 'ws://localhost:4000',
+        wsEndpoint: 'ws://localhost:4000/graphql',
 
         // LocalStorage token
         tokenName: 'apollo-token',

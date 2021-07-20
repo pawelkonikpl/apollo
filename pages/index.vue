@@ -75,3 +75,30 @@
     </v-col>
   </v-row>
 </template>
+
+<script>
+import Vue from 'vue'
+import gql from "graphql-tag";
+
+export default Vue.extend({
+  name: 'index',
+  apollo: {
+    // Subscriptions
+    $client: 'alternativeClient',
+    $subscribe: {
+      // When a tag is added
+      numberIncremented: {
+        query: gql`subscription IncrementingNumber {
+            numberIncremented
+        }`,
+
+        // Result hook
+        result (data) {
+          // Let's update the local data
+          console.log('DATA 123', data.data.numberIncremented)
+        },
+      },
+    },
+  },
+})
+</script>
